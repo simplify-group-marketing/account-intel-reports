@@ -84,7 +84,7 @@ function readout(){
   $('#readout').innerHTML=READOUT.map(c=>`<div class="card"><h3>${c.title}</h3><div>${c.body}</div></div>`).join('');
 }
 $('#q').addEventListener('input',e=>{f.q=e.target.value.toLowerCase();render()});
-$('#foot').textContent=`Prepared for Tori · by Shamit Biswas · data as of ${META.asof}`;
+$('#foot').textContent=`Prepared for Tori · data as of ${META.asof}`;
 kpis();chips();readout();render();
 </script>
 </body>
