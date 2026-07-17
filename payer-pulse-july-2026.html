@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Payer Pulse — July 2026 Monthly Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue-900:#0B3A6B; --blue:#105299; --blue-link:#0C5395;
+    --sky:#BBECFF; --sky-soft:#E6F4FE;
+    --gold:#D6B73E; --gold-deep:#A8861A; --gold-pale:#FFF4CF;
+    --ink:#221F20; --ink-70:#4d4a48; --ink-50:#6b6764;
+    --paper:#FFFFFF; --bg:#E7E8EA; --line:#E4E5E7; --line-soft:#EEEFF1;
+    --hi:#B23A2E; --hi-bg:#FBEAE7; --med:#B07A12; --med-bg:#FBF1D6; --low:#5A6B7A; --low-bg:#EEF2F5;
+    --aca:#1E6FB0; --aca-bg:#E7F1FA; --medicaid:#1F8A6D; --medicaid-bg:#E4F4EE;
+    --medicare:#6A4FB3; --medicare-bg:#EEE9F8; --commercial:#5A6B7A; --commercial-bg:#EEF2F5;
+    --act:#B23A2E; --act-bg:#FBEAE7; --watch:#B07A12; --watch-bg:#FBF1D6; --fyi:#5A6B7A; --fyi-bg:#EEF2F5;
+    --teal:#009277;
+    --maxw:780px;
+  }
+  *{box-sizing:border-box;} html{scroll-behavior:smooth;}
+  body{margin:0;padding:28px 14px 64px;background:var(--bg);font-family:'Inter',-apple-system,'Segoe UI',Arial,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:var(--maxw);margin:0 auto;background:var(--paper);box-shadow:0 1px 2px rgba(11,58,107,.06),0 18px 50px -22px rgba(11,58,107,.30);border-radius:4px;overflow:hidden;}
+  .brandbar{padding:24px 36px 18px;text-align:center;}
+  .brandbar img{height:56px;width:auto;}
+  .brandrule{height:1px;background:#E0E1E3;margin:0 36px;}
+  .masthead{position:relative;overflow:hidden;background:#1c2a5e url('https://shamitbiswas-sh.github.io/payer-pulse/assets/masthead-banner.png') right center / cover no-repeat;padding:34px 40px 26px;}
+  .mast-corner{position:absolute;top:34px;right:40px;color:var(--sky);font-size:12px;font-weight:600;letter-spacing:.4px;z-index:2;}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--gold);font-size:11px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;margin:0;position:relative;z-index:2;}
+  .eyebrow .tick{width:18px;height:1.5px;background:var(--gold);display:inline-block;}
+  .title{font-family:'Roboto Slab',Georgia,serif;font-weight:800;font-size:46px;line-height:1;color:#fff;margin:18px 0 0;letter-spacing:-1px;position:relative;z-index:1;}
+  .meta{position:relative;z-index:1;margin:16px 0 0;display:flex;flex-wrap:wrap;border-top:1px solid rgba(187,236,255,.22);padding-top:13px;}
+  .meta .cell{padding-right:22px;margin-right:22px;border-right:1px solid rgba(187,236,255,.22);}
+  .meta .cell:last-child{border-right:0;}
+  .meta .k{display:block;color:rgba(187,236,255,.7);font-size:9.5px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:3px;}
+  .meta .v{display:block;color:#fff;font-size:13px;font-weight:600;}
+  .goldrule{height:4px;background:linear-gradient(90deg,var(--gold) 0%,#e8cf6a 50%,var(--gold) 100%);}
+  .toolbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--line);padding:11px 40px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .toolbar .lbl{font-size:10.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--ink-50);white-space:nowrap;}
+  .chips{display:flex;gap:7px;flex-wrap:wrap;flex:1;}
+  .chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 13px;font-family:inherit;font-size:12.5px;font-weight:600;color:var(--ink-70);cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:all .15s ease;line-height:1;}
+  .chip:hover{border-color:currentColor;}
+  .chip.active{background:var(--blue);border-color:var(--blue);color:#fff;}
+  .chip.prod.active{background:var(--teal);border-color:var(--teal);}
+  .section{padding:30px 40px 8px;}
+  .section-head{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--blue);padding-bottom:8px;margin-bottom:4px;}
+  .kicker{font-size:10.5px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold-deep);}
+  h2{font-family:'Roboto Slab',Georgia,serif;font-size:24px;font-weight:700;color:var(--ink);margin:2px 0 0;}
+  .count{margin-left:auto;font-size:11.5px;color:var(--ink-50);font-weight:600;white-space:nowrap;}
+  .section-sub{font-size:13px;color:var(--ink-70);margin:10px 0 6px;line-height:1.55;}
+  /* legend */
+  .legend{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 4px;}
+  .lg{font-size:10.5px;font-weight:700;padding:4px 10px;border-radius:3px;letter-spacing:.4px;}
+  /* brief */
+  .brief{list-style:none;margin:14px 0 22px;padding:0;counter-reset:b;}
+  .brief li{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--line-soft);counter-increment:b;font-size:13.5px;line-height:1.55;}
+  .brief li::before{content:counter(b);flex:0 0 26px;height:26px;border-radius:50%;background:var(--blue);color:#fff;font-weight:700;font-size:12.5px;display:grid;place-items:center;margin-top:1px;}
+  .brief .tags{margin-left:8px;white-space:nowrap;}
+  /* tags & badges */
+  .tag{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.5px;padding:3px 7px;border-radius:3px;text-transform:uppercase;vertical-align:1px;margin-left:4px;}
+  .t-hi{background:var(--hi-bg);color:var(--hi);} .t-med{background:var(--med-bg);color:var(--med);}
+  .t-act{background:var(--act-bg);color:var(--act);} .t-watch{background:var(--watch-bg);color:var(--watch);} .t-fyi{background:var(--fyi-bg);color:var(--fyi);}
+  .t-aca{background:var(--aca-bg);color:var(--aca);} .t-medicaid{background:var(--medicaid-bg);color:var(--medicaid);}
+  .t-medicare{background:var(--medicare-bg);color:var(--medicare);} .t-comm{background:var(--commercial-bg);color:var(--commercial);}
+  .t-prod{background:#E4F4EE;color:#0E6B52;border:1px solid #bfe4d6;}
+  .t-alleg{background:#FDECEC;color:#8E2B2B;border:1px dashed #d89b9b;}
+  .score{display:inline-grid;place-items:center;min-width:34px;height:22px;border-radius:3px;background:var(--blue-900);color:#fff;font-size:11.5px;font-weight:800;padding:0 6px;}
+  .score.watch{background:#7a6008;}
+  /* cards */
+  .card{border:1px solid var(--line);border-radius:5px;padding:16px 18px 13px;margin:12px 0;}
+  .card .top{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:7px;}
+  .payerline{font-size:11px;font-weight:700;color:var(--ink-50);letter-spacing:.3px;margin-left:auto;}
+  .card h3{font-family:'Roboto Slab',Georgia,serif;font-size:16.5px;font-weight:700;margin:2px 0 7px;color:var(--ink);line-height:1.35;}
+  .card p{font-size:13px;line-height:1.6;margin:0 0 8px;color:var(--ink-70);}
+  .why{font-size:12.5px;line-height:1.55;margin:0 0 6px;padding:8px 11px;background:var(--sky-soft);border-left:3px solid var(--blue);color:var(--ink);}
+  .play{font-size:12.5px;line-height:1.55;margin:0 0 10px;padding:8px 11px;background:var(--gold-pale);border-left:3px solid var(--gold-deep);color:var(--ink);}
+  .play b,.why b{color:var(--blue-900);}
+  .src{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;border-top:1px solid var(--line-soft);padding-top:9px;}
+  .src a{color:var(--blue-link);font-weight:600;text-decoration:none;}
+  .src a:hover{text-decoration:underline;}
+  .corrob{color:var(--ink-50);font-size:11px;}
+  .fb{margin-left:auto;font-size:11px;color:var(--ink-50);}
+  .fb a{text-decoration:none;font-size:13px;margin-left:5px;}
+  .deadline{font-size:11.5px;font-weight:700;color:var(--hi);}
+  /* fyi strip */
+  .fyi-strip{margin:14px 0 22px;padding:12px 16px;background:var(--low-bg);border-radius:5px;font-size:12.5px;line-height:1.7;color:var(--ink-70);}
+  /* radar */
+  .radar{margin:14px 0 26px;padding:0;list-style:none;}
+  .radar li{display:flex;gap:16px;padding:10px 0;border-bottom:1px solid var(--line-soft);font-size:13px;line-height:1.5;}
+  .radar .d{flex:0 0 92px;font-weight:800;color:var(--blue-900);font-size:12.5px;}
+  .radar .lab{flex:0 0 108px;}
+  .radar a{color:var(--blue-link);text-decoration:none;font-weight:600;}
+  /* footer */
+  .method{margin:26px 40px 0;padding:14px 16px;background:var(--sky-soft);border-radius:5px;font-size:12px;line-height:1.65;color:var(--ink-70);}
+  .footer{margin-top:26px;background:var(--blue-900);color:#cfe3f5;padding:24px 40px;font-size:12px;line-height:1.8;text-align:center;}
+  .footer a{color:#fff;text-decoration:none;font-weight:600;}
+  .footer .fine{color:#8fb0cc;font-size:11px;margin-top:8px;}
+  .hidden{display:none!important;}
+  @media (max-width:560px){ .section{padding:24px 20px 6px;} .toolbar{padding:11px 20px;} .masthead{padding:28px 22px 22px;} .title{font-size:36px;} .payerline{margin-left:0;flex-basis:100%;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brandbar"><img src="https://shamitbiswas-sh.github.io/payer-pulse/assets/simplify-healthcare-logo.png" alt="Simplify Healthcare — A Simplify Group Company"></div>
+  <div class="brandrule"></div>
+
+  <div class="masthead">
+    <div class="mast-corner">v2 · Calibration Edition 1</div>
+    <p class="eyebrow"><span class="tick"></span>Monthly Payer Intelligence</p>
+    <h1 class="title">Payer Pulse</h1>
+    <div class="meta">
+      <div class="cell"><span class="k">Edition</span><span class="v">July 2026 Monthly</span></div>
+      <div class="cell"><span class="k">Published</span><span class="v">July 17, 2026</span></div>
+      <div class="cell"><span class="k">Coverage window</span><span class="v">Jun 15 – Jul 17, 2026</span></div>
+      <div class="cell"><span class="k">Next issue</span><span class="v">August 17, 2026</span></div>
+    </div>
+  </div>
+  <div class="goldrule"></div>
+
+  <div class="toolbar">
+    <span class="lbl">View</span>
+    <div class="chips">
+      <button class="chip active" data-f="all">All</button>
+      <button class="chip" data-f="regulatory">Regulatory</button>
+      <button class="chip" data-f="market">Payer &amp; Market</button>
+      <button class="chip" data-f="leadership">Leadership</button>
+      <button class="chip prod" data-p="B1">B1</button>
+      <button class="chip prod" data-p="P1">P1</button>
+      <button class="chip prod" data-p="C1">C1</button>
+      <button class="chip prod" data-p="X1">X1</button>
+      <button class="chip prod" data-p="I1">I1</button>
+      <button class="chip" data-f="hi" id="hiOnly">High impact only</button>
+    </div>
+  </div>
+
+  <!-- ============ 60-SECOND BRIEF ============ -->
+  <div class="section" id="brief">
+    <div class="section-head"><div><div class="kicker">At a glance</div><h2>The 60-Second Brief</h2></div><span class="count">8 storylines</span></div>
+    <p class="section-sub">Every item below passed five gates: named actor · concrete payer workload · verified date &amp; link · product mapping · scoring cut line. Scores are visible this cycle — <b>rate items with 👍/👎 so the rubric learns your rules.</b></p>
+    <div class="legend">
+      <span class="lg" style="background:var(--act-bg);color:var(--act)">ACT NOW ≥75</span>
+      <span class="lg" style="background:var(--watch-bg);color:var(--watch)">WATCH 55–74</span>
+      <span class="lg" style="background:var(--fyi-bg);color:var(--fyi)">FYI 40–54</span>
+      <span class="lg" style="background:#E4F4EE;color:#0E6B52">B1 P1 C1 X1 I1 = product fit</span>
+    </div>
+    <ol class="brief">
+      <li><div><b>Medicaid work requirements are now a systems race with a moving legal target.</b> The IFC holds a Jan 1, 2027 state deadline while 26 states sue to narrow it — MCOs must build eligibility, exemption, and verification workflows anyway.<span class="tags"><span class="tag t-act">Act</span><span class="tag t-prod">B1 C1 X1</span></span></div></li>
+      <li><div><b>Illinois re-awarded its ~3.1M-life HealthChoice program</b> to six plans — Humana is new to the program — with a Jan 1, 2027 go-live: six simultaneous implementation programs (benefits loads, claims config, provider data).<span class="tags"><span class="tag t-act">Act</span><span class="tag t-prod">B1 P1 C1</span></span></div></li>
+      <li><div><b>The 2027 ACA market is repricing and shrinking at once:</b> 14% median proposed premium hikes across 77 issuers, and the exit list hit nine carriers (~700K+ members to re-map) — massive plan-discontinuation, portfolio, and SBC workload.<span class="tags"><span class="tag t-act">Act</span><span class="tag t-prod">B1 X1</span></span></div></li>
+      <li><div><b>Star Ratings became litigated infrastructure.</b> After Clover's court win forced an industry-wide 2026 recalculation, Elevance (tracked, 36.3M) is suing CMS over $115M in bonuses — ratings data integrity is now a board-level system requirement.<span class="tags"><span class="tag t-act">Act</span><span class="tag t-prod">I1 C1</span></span></div></li>
+      <li><div><b>Centene is shedding weight on two fronts:</b> voluntary buyouts offered across its ~61K workforce and a 2027 exit from Arkansas' ARHOME expansion (~77K members) — classic do-more-with-less automation posture.<span class="tags"><span class="tag t-act">Act</span><span class="tag t-prod">B1 C1</span></span></div></li>
+      <li><div><b>Washington turned up the heat on payer AI and tech ops:</b> Senators demanded UnitedHealthcare, Humana, and CVS document algorithmic denial practices by Jul 28, while CMS stood up a new tech office (OHTP) driving interoperability — with CMS-0057 APIs due Jan 1, 2027.<span class="tags"><span class="tag t-med">Med</span><span class="tag t-prod">C1 P1 I1</span></span></div></li>
+      <li><div><b>Q2 told a margin-repair story:</b> UnitedHealth beat with an 86.7% care ratio and raised guidance, crediting benefit-design discipline and market exits; Elevance beat, raised, and still fell ~10% on Medicaid pressure — efficiency programs are the 2027 lever everywhere.<span class="tags"><span class="tag t-med">Med</span><span class="tag t-prod">B1 I1</span></span></div></li>
+      <li><div><b>Regional consolidation kept rolling:</b> Medica leaves three ACA states, Memorial Hermann winds down commercial insurance, and Optum closed its Alegeus benefits-administration acquisition — every wind-down and migration is somebody's configuration project.<span class="tags"><span class="tag t-med">Med</span><span class="tag t-prod">B1 X1</span></span></div></li>
+    </ol>
+  </div>
+
+  <!-- ============ REGULATORY ============ -->
+  <div class="section" id="regulatory">
+    <div class="section-head"><div><div class="kicker">Deep dive</div><h2>Regulatory &amp; Government Watch</h2></div><span class="count">6 items</span></div>
+
+    <div class="card" data-cat="regulatory" data-imp="hi" data-prod="B1 C1 X1">
+      <div class="top"><span class="tag t-alleg" style="background:var(--hi-bg);color:var(--hi);border:0">IFC · Live litigation</span><span class="tag t-medicaid">Medicaid</span><span class="tag t-act">Act now</span><span class="score">95</span><span class="payerline">All Medicaid MCOs</span></div>
+      <h3>Medicaid work requirements: Jan 1, 2027 deadline stands while 26 states sue</h3>
+      <p>CMS's interim final rule (CMS-2454-IFC) implements OBBBA's 80-hours/month community-engagement requirement for expansion adults, projecting ~2.3M enrollment losses in FY2027; comments close and the rule takes effect Jul 31, 2026. On Jun 29, 26 states sued, arguing CMS unlawfully narrowed the "medically frail" exemption — timelines are now uncertain, but states and MCOs must keep building.</p>
+      <div class="why"><b>Why it matters:</b> Verification, exemption, and churn-communication workflows touch eligibility config (B1), eligibility-to-claims integration (C1), and member outreach (X1) in every expansion state.</div>
+      <div class="play"><b>The play →</b> Medicaid MCO COO/CIO conversation: "your Jan 1 build can't wait for the courts — here's how plans are de-risking eligibility config now."</div>
+      <div class="src"><a href="https://www.federalregister.gov/documents/2026/06/03/2026-11094/medicaid-program-community-engagement-requirement-for-certain-individuals" target="_blank">Federal Register ↗</a><a href="https://www.healthcaredive.com/news/states-sue-trump-administration-medicaid-work-requirements-rule/824060/" target="_blank">Healthcare Dive ↗</a><span class="corrob">✓ verified · 4+ outlets</span><span class="deadline">⏱ Effective Jul 31 · States: Jan 1, 2027</span><span class="fb">Rate: <a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%201%20UP">👍</a><a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%201%20DOWN&body=Why:%20">👎</a></span></div>
+    </div>
+
+    <div class="card" data-cat="regulatory" data-imp="hi" data-prod="B1 X1">
+      <div class="top"><span class="tag t-alleg" style="background:var(--hi-bg);color:var(--hi);border:0">Rate filings</span><span class="tag t-aca">ACA</span><span class="tag t-act">Act now</span><span class="score">88</span><span class="payerline">77 issuers · 16 states + DC</span></div>
+      <h3>2027 ACA filings: 14% median proposed increase; 20 insurers ask for 20%+</h3>
+      <p>KFF's Jul 8 analysis of preliminary 2027 marketplace filings shows a second straight year of double-digit requests, driven by ~10% medical/pharmacy trend, enhanced-subsidy expiration, and the 2027 NBPP's market rule changes (standardized-plan requirement eliminated, user fees cut to 1.9%). Federal rate-filing deadline passed Jul 15.</p>
+      <div class="why"><b>Why it matters:</b> Every exchange issuer is redesigning and repricing its 2027 portfolio under new NBPP rules — peak season for plan configuration, filing support, and SBC regeneration.</div>
+      <div class="play"><b>The play →</b> VP Product at exchange issuers: benchmark their 2027 portfolio rework timeline against filing/AEP dates; B1 compresses it.</div>
+      <div class="src"><a href="https://www.kff.org/affordable-care-act/in-preliminary-rate-filings-aca-marketplace-insurers-largely-propose-double-digit-premium-increase-for-2027-following-a-steep-climb-this-year/" target="_blank">KFF ↗</a><span class="corrob">✓ verified · 3 outlets</span><span class="deadline">⏱ Final rates fall 2026 · AEP Nov 1</span><span class="fb">Rate: <a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%202%20UP">👍</a><a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%202%20DOWN&body=Why:%20">👎</a></span></div>
+    </div>
+
+    <div class="card" data-cat="regulatory" data-imp="hi" data-prod="I1 C1">
+      <div class="top"><span class="tag t-alleg" style="background:var(--hi-bg);color:var(--hi);border:0">Litigation</span><span class="tag t-medicare">Medicare</span><span class="tag t-act">Act now</span><span class="score">86</span><span class="payerline">Elevance · Jumbo · 36.3M · tracked</span></div>
+      <h3>Stars recalculation saga: Clover wins, CMS reruns everyone, Elevance sues over $115M</h3>
+      <p>After a Georgia court ruled CMS improperly included 20 measures in 2026 Star Ratings, CMS raised Clover's flagship PPO to 4.5 stars, then said in a Jun 17 memo it would voluntarily recalculate 2027 quality-bonus ratings for certain other contracts. On Jul 1, Elevance sued in S.D. Georgia claiming Clover got a more favorable remedy — ~$115M in 2027 bonus payments across five MA contracts at stake — and SCAN and Alignment have since filed their own suits. KFF pegs 2026 MA bonuses at $13B+.</p>
+      <div class="why"><b>Why it matters:</b> Stars and risk-adjustment data integrity are now litigation-grade. Plans need audit-defensible quality data pipelines (I1) and clean benefits-to-claims config feeding the measures (C1).</div>
+      <div class="play"><b>The play →</b> MA quality/analytics leaders at tracked plans: "if $115M can turn on measure math, what does your ratings data lineage look like?"</div>
+      <div class="src"><a href="https://www.healthcaredive.com/news/elevance-sues-cms-medicare-advantage-stars-recalculation/824411/" target="_blank">Healthcare Dive ↗</a><a href="https://www.healthcaredive.com/news/cms-recalculates-medicare-advantage-stars-clover-lawsuit/823253/" target="_blank">Recalc background ↗</a><a href="https://www.healthcaredive.com/news/scan-alignment-sue-cms-ma-star-ratings-recalculation-clover-lawsuits/825091/" target="_blank">SCAN/Alignment suits ↗</a><span class="corrob">✓ verified · 5+ outlets</span><span class="fb">Rate: <a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%203%20UP">👍</a><a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%203%20DOWN&body=Why:%20">👎</a></span></div>
+    </div>
+
+    <div class="card" data-cat="regulatory" data-imp="med" data-prod="C1 I1">
+      <div class="top"><span class="tag t-alleg" style="background:var(--med-bg);color:var(--med);border:0">Congressional probe</span><span class="tag t-medicare">Medicare</span><span class="tag t-watch">Watch</span><span class="score watch">74</span><span class="payerline">UnitedHealthcare · Humana · CVS/Aetna</span></div>
+      <h3>Senators demand AI prior-auth records from the three largest MA insurers by Jul 28</h3>
+      <p>Sens. Blumenthal and Hawley sent Jul 14 letters demanding inventories of predictive technologies used in post-acute coverage decisions, citing findings that the trio denied skilled-nursing requests at ~12% with most appealed denials overturned. They want confirmation that algorithms don't make final denials.</p>
+      <div class="why"><b>Why it matters:</b> AI-assisted UM now carries documentation and auditability expectations — pressure lands on claims/UM configuration transparency (C1) and denial analytics (I1).</div>
+      <div class="play"><b>The play →</b> Compliance and claims-ops leaders: auditable, rules-based configuration is the defensible posture when regulators ask "why did the system deny this?"</div>
+      <div class="src"><a href="https://www.statnews.com/2026/07/15/medicare-advantage-ai-care-denials-probe-blumenthal-hawley/" target="_blank">STAT ↗</a><span class="corrob">✓ verified · 2 outlets</span><span class="deadline">⏱ Responses due Jul 28</span><span class="fb">Rate: <a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%204%20UP">👍</a><a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%204%20DOWN&body=Why:%20">👎</a></span></div>
+    </div>
+
+    <div class="card" data-cat="regulatory" data-imp="med" data-prod="P1 C1 X1">
+      <div class="top"><span class="tag t-alleg" style="background:var(--med-bg);color:var(--med);border:0">Agency reorg</span><span class="tag t-medicare">Medicare</span><span class="tag t-medicaid">Medicaid</span><span class="tag t-watch">Watch</span><span class="score watch">62</span><span class="payerline">All CMS-regulated payers</span></div>
+      <h3>CMS stands up Office of Health Technology and Products to drive interoperability</h3>
+      <p>Announced Jun 9 under Deputy Administrator Amy Gleason, OHTP centralizes CMS strategy for AI, digital products, provider directories, and claims-system modernization, including a Division of Data and Interoperability Platforms. It's the enforcement muscle behind the payer API agenda — CMS-0057 prior-auth/interop APIs are due Jan 1, 2027.</p>
+      <div class="why"><b>Why it matters:</b> Directory accuracy (P1), claims/prior-auth data exchange (C1), and member-facing transparency (X1) all sit on OHTP's runway — federal attention means budgets follow.</div>
+      <div class="play"><b>The play →</b> CIO conversation starter: pair OHTP + CMS-0057 into a "your 2027 interop scorecard" narrative.</div>
+      <div class="src"><a href="https://www.fiercehealthcare.com/health-tech/cms-creates-new-health-tech-office-lead-interoperability-efforts-digital-products" target="_blank">Fierce Healthcare ↗</a><span class="corrob">✓ verified · 3 outlets</span><span class="deadline">⏱ CMS-0057 APIs: Jan 1, 2027</span><span class="fb">Rate: <a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%205%20UP">👍</a><a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%205%20DOWN&body=Why:%20">👎</a></span></div>
+    </div>
+
+    <div class="card" data-cat="regulatory" data-imp="med" data-prod="B1">
+      <div class="top"><span class="tag t-alleg" style="background:var(--med-bg);color:var(--med);border:0">Guidance</span><span class="tag t-medicaid">Medicaid</span><span class="tag t-watch">Watch</span><span class="score watch">56</span><span class="payerline">Medicaid MCOs</span></div>
+      <h3>CMS puts Section 1115 waivers "on a tighter leash"</h3>
+      <p>Jun 11 guidance tightens how CMS assesses 1115 demonstration renewals and budget neutrality — new uncertainty for states and MCOs whose managed-care models and supplemental programs ride on waiver authority.</p>
+      <div class="why"><b>Why it matters:</b> Waiver turbulence changes Medicaid benefit and program design mid-cycle (B1) — plans in waiver-heavy states need faster reconfiguration capability.</div>
+      <div class="play"><b>The play →</b> Flag for account teams covering waiver-dependent state books; pair with work-requirements messaging.</div>
+      <div class="src"><a href="https://www.beckerspayer.com/payer/medicaid/cms-puts-medicaid-waivers-on-a-tighter-leash-5-notes/" target="_blank">Becker's Payer ↗</a><span class="corrob">✓ verified</span><span class="fb">Rate: <a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%206%20UP">👍</a><a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%206%20DOWN&body=Why:%20">👎</a></span></div>
+    </div>
+  </div>
+
+  <!-- ============ MARKET ============ -->
+  <div class="section" id="market">
+    <div class="section-head"><div><div class="kicker">Competitive landscape</div><h2>Payer &amp; Market Moves</h2></div><span class="count">9 items · 32 cut by scoring</span></div>
+
+    <div class="card" data-cat="market" data-imp="hi" data-prod="B1 P1 C1">
+      <div class="top"><span class="tag t-alleg" style="background:var(--hi-bg);color:var(--hi);border:0">Procurement</span><span class="tag t-medicaid">Medicaid</span><span class="tag t-act">Act now</span><span class="score">90</span><span class="payerline">6 plans · ~3.1M lives</span></div>
+      <h3>Illinois awards HealthChoice Medicaid contracts; Humana enters, go-live Jan 1, 2027</h3>
+      <p>Illinois HFS awarded 4.5-year contracts to Aetna Better Health, BCBS of Illinois (HCSC, tracked · 18.6M), Humana (tracked · 11.8M — new to the program), Meridian (Centene), Molina, and CountyCare, announced Jun 15.</p>
+      <div class="why"><b>Why it matters:</b> Six simultaneous implementations on one deadline: benefits loads (B1), provider network/data builds (P1), claims configuration and readiness testing (C1).</div>
+      <div class="play"><b>The play →</b> Humana's greenfield Illinois build and Molina's implementation are live opportunities NOW — implementation pain peaks in Q3–Q4 2026, not after go-live.</div>
+      <div class="src"><a href="https://www.healthcaredive.com/news/illinois-medicaid-awards-healthchoice-contracts-humana/822278/" target="_blank">Healthcare Dive ↗</a><a href="https://investors.molinahealthcare.com/news-releases/news-release-details/molina-healthcare-wins-illinois-medicaid-contract" target="_blank">Molina PR ↗</a><span class="corrob">✓ verified · 4+ outlets</span><span class="deadline">⏱ Go-live Jan 1, 2027</span><span class="fb">Rate: <a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%207%20UP">👍</a><a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%207%20DOWN&body=Why:%20">👎</a></span></div>
+    </div>
+
+    <div class="card" data-cat="market" data-imp="hi" data-prod="B1 X1">
+      <div class="top"><span class="tag t-alleg" style="background:var(--hi-bg);color:var(--hi);border:0">Market exits</span><span class="tag t-aca">ACA</span><span class="tag t-act">Act now</span><span class="score">84</span><span class="payerline">9 carriers · ~700K+ members</span></div>
+      <h3>2027 ACA exit wave hits nine insurers — 700K+ members need re-mapping</h3>
+      <p>Confirmed 2027 exits now include Cigna (tracked · 16.4M — 369K members, 11 states), Baylor Scott &amp; White (TX), CareSource (IN), PacificSource (OR/ID/MT), Providence (winding down most lines), Mending, Medica, plus Centene's New Hampshire pullback and Elevance's Ohio small-group exit.</p>
+      <div class="why"><b>Why it matters:</b> Exits mean plan-discontinuation operations, crosswalk/mapping, and member-migration communications (B1, X1) — while absorbing carriers face enrollment surges they must configure for.</div>
+      <div class="play"><b>The play →</b> Two-sided: exiting plans need wind-down configuration; carriers staying in vacated counties (the enrollment winners) need capacity — ask who's absorbing each book.</div>
+      <div class="src"><a href="https://www.kff.org/affordable-care-act/tracking-insurer-participation-changes-in-the-aca-marketplaces-in-2027/" target="_blank">KFF tracker ↗</a><a href="https://www.beckerspayer.com/payer/aca/6-insurers-exiting-aca-markets/" target="_blank">Becker's ↗</a><span class="corrob">✓ verified · 6+ outlets</span><span class="fb">Rate: <a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%208%20UP">👍</a><a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%208%20DOWN&body=Why:%20">👎</a></span></div>
+    </div>
+
+    <div class="card" data-cat="market" data-imp="hi" data-prod="B1 C1">
+      <div class="top"><span class="tag t-alleg" style="background:var(--hi-bg);color:var(--hi);border:0">Exit</span><span class="tag t-medicaid">Medicaid</span><span class="tag t-act">Act now</span><span class="score">78</span><span class="payerline">Centene · Jumbo</span></div>
+      <h3>Centene exits Arkansas' ARHOME Medicaid expansion for 2027</h3>
+      <p>Announced Jul 8: Centene won't renew in Arkansas' premium-assistance expansion program (~77K members, est. $400–700M premium), citing OBBBA funding pressure; Arkansas soft-launched work-requirement checks Jul 1. Arkansas BCBS becomes the lone ARHOME carrier.</p>
+      <div class="why"><b>Why it matters:</b> Membership migration at speed — Arkansas BCBS must absorb a book fast (B1 config, C1 claims readiness) while Centene runs discontinuation ops.</div>
+      <div class="play"><b>The play →</b> Arkansas BCBS just became a high-urgency regional target: sudden volume, small plan, hard deadline.</div>
+      <div class="src"><a href="https://www.healthcaredive.com/news/centene-exits-arkansas-medicaid-expansion-arhome/824678/" target="_blank">Healthcare Dive ↗</a><span class="corrob">✓ verified · 3 outlets</span><span class="deadline">⏱ Effective Jan 1, 2027</span><span class="fb">Rate: <a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%209%20UP">👍</a><a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%209%20DOWN&body=Why:%20">👎</a></span></div>
+    </div>
+
+    <div class="card" data-cat="market" data-imp="hi" data-prod="C1 B1">
+      <div class="top"><span class="tag t-alleg" style="background:var(--hi-bg);color:var(--hi);border:0">Distress → automation</span><span class="tag t-comm">Cross-LOB</span><span class="tag t-act">Act now</span><span class="score">76</span><span class="payerline">15 payers cutting in 2026</span></div>
+      <h3>Centene offers buyouts to most of 61K staff as payer job cuts reach 15 carriers</h3>
+      <p>Centene confirmed Jun 15 a voluntary separation program open to most employees amid marketplace and Medicaid membership losses. Becker's mid-June tracker counts 15 payers cutting in 2026 — including Aetna (313 small-group roles), Blue Shield of California (tracked · 4.7M), PacificSource, and Point32Health — with 59K+ insurance jobs shed since end-2024.</p>
+      <div class="why"><b>Why it matters:</b> Headcount down + compliance workload up (work requirements, CMS-0057, 2027 refilings) = the classic automation-demand squeeze (C1 config/testing automation, B1 plan-ops efficiency).</div>
+      <div class="play"><b>The play →</b> Lead efficiency decks with this math: fewer people, more mandates, same deadlines — automation is the only variable left.</div>
+      <div class="src"><a href="https://www.beckerspayer.com/workforce/centene-offers-employee-buyouts/" target="_blank">Becker's ↗</a><a href="https://www.beckerspayer.com/workforce/7-payers-cutting-jobs-2026/" target="_blank">2026 tracker ↗</a><span class="corrob">✓ verified · 3 outlets</span><span class="fb">Rate: <a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%2010%20UP">👍</a><a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%2010%20DOWN&body=Why:%20">👎</a></span></div>
+    </div>
+
+    <div class="card" data-cat="market" data-imp="med" data-prod="I1 C1">
+      <div class="top"><span class="tag t-alleg" style="background:var(--med-bg);color:var(--med);border:0">Financials + enforcement</span><span class="tag t-medicaid">Medicaid</span><span class="tag t-medicare">Medicare</span><span class="tag t-watch">Watch</span><span class="score watch">72</span><span class="payerline">Elevance · Jumbo · 36.3M · tracked</span></div>
+      <h3>Elevance's expensive July: Q2 beat-and-raise, D.C. Medicaid exit, $342M RADV closure</h3>
+      <p>Q2 (Jul 15): adjusted EPS $7.45 on ~$49.8B revenue, 89.7% MLR, FY guidance raised to ≥$27.00 — yet shares fell ~10% on Medicaid margin concerns; Elevance confirmed a D.C. Medicaid exit and flagged possible others. Separately, CMS closed its MA risk-adjustment enforcement Jul 13 after Elevance completed remediation and paid a $342M remittance.</p>
+      <div class="why"><b>Why it matters:</b> A tracked jumbo account under simultaneous Medicaid-margin and risk-adjustment-integrity pressure, naming "operating efficiency" as a 2027 lever (I1 data integrity, C1 accuracy).</div>
+      <div class="play"><b>The play →</b> Account team: the $342M lesson is that encounter/diagnosis data quality is now enforcement-grade — natural I1 + C1 expansion narrative.</div>
+      <div class="src"><a href="https://www.healthcaredive.com/news/elevance-medicaid-exits-q2-2025-2026-earnings-raise/825217/" target="_blank">Healthcare Dive ↗</a><a href="https://www.sec.gov/Archives/edgar/data/0001156039/000115603926000060/elv-20260630.htm" target="_blank">10-Q ↗</a><span class="corrob">✓ verified · SEC + 3 outlets</span><span class="fb">Rate: <a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%2011%20UP">👍</a><a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%2011%20DOWN&body=Why:%20">👎</a></span></div>
+    </div>
+
+    <div class="card" data-cat="market" data-imp="med" data-prod="B1 I1">
+      <div class="top"><span class="tag t-alleg" style="background:var(--med-bg);color:var(--med);border:0">Financials</span><span class="tag t-medicare">Medicare</span><span class="tag t-aca">ACA</span><span class="tag t-watch">Watch</span><span class="score watch">70</span><span class="payerline">UnitedHealth Group · Jumbo</span></div>
+      <h3>UnitedHealth Q2: care ratio down to 86.7%, guidance up — margin repair via product redesign</h3>
+      <p>Jul 16: adjusted EPS $6.38 (vs $4.08 LY) on Q2 revenue of $112.0B; FY26 adjusted EPS guidance raised to $19.50–$20.00. Management credited product-design changes, improved medical management, and better-aligned pricing, plus exits (2026 membership down ~500K ACA, ~1.1M MA). A week earlier UNH published an external FTI audit finding ~97% of HouseCalls diagnoses supported — building an audit-defensible coding posture amid DOJ scrutiny.</p>
+      <div class="why"><b>Why it matters:</b> The market leader is proving margins are rebuilt through benefit-design levers (B1) and defensible risk-adjustment documentation (I1) — expect fast-followers among regionals.</div>
+      <div class="play"><b>The play →</b> Use as the "what good looks like" reference when regional plans ask how nationals recovered margin.</div>
+      <div class="src"><a href="https://www.cnbc.com/2026/07/16/unitedhealth-group-unh-earnings-q2-2026.html" target="_blank">CNBC ↗</a><a href="https://www.healthcaredive.com/news/unitedhealth-housecalls-audit-results-home-visits-medicare-advantage/824596/" target="_blank">Audit ↗</a><span class="corrob">✓ verified · 5+ outlets</span><span class="fb">Rate: <a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%2012%20UP">👍</a><a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%2012%20DOWN&body=Why:%20">👎</a></span></div>
+    </div>
+
+    <div class="card" data-cat="market" data-imp="med" data-prod="B1 X1">
+      <div class="top"><span class="tag t-alleg" style="background:var(--med-bg);color:var(--med);border:0">M&amp;A closed</span><span class="tag t-comm">Commercial</span><span class="tag t-watch">Watch</span><span class="score watch">68</span><span class="payerline">Optum · Alegeus clients</span></div>
+      <h3>Optum Financial closes Alegeus acquisition — benefits-admin consolidation continues</h3>
+      <p>Closed Jul 2: Alegeus powers HSA/FSA/HRA/COBRA administration for hundreds of health plans and TPAs, now inside UnitedHealth Group.</p>
+      <div class="why"><b>Why it matters:</b> Plans that white-label Alegeus now face platform/integration decisions under a competitor's roof — displacement and integration conversations open up (B1, X1).</div>
+      <div class="play"><b>The play →</b> Ask Alegeus-dependent plans how they feel about their CDH stack living inside UHG.</div>
+      <div class="src"><a href="https://www.optum.com/en/newsroom/health-tech/optum-financial-expands-consumer-healthcare-financing-capabilities-alegeus-technologies-acquisition.html" target="_blank">Optum ↗</a><span class="corrob">✓ verified · 2 outlets</span><span class="fb">Rate: <a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%2013%20UP">👍</a><a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%2013%20DOWN&body=Why:%20">👎</a></span></div>
+    </div>
+
+    <div class="card" data-cat="market" data-imp="med" data-prod="B1 X1">
+      <div class="top"><span class="tag t-alleg" style="background:var(--med-bg);color:var(--med);border:0">Wind-down</span><span class="tag t-comm">Commercial</span><span class="tag t-watch">Watch</span><span class="score watch">66</span><span class="payerline">Memorial Hermann · Small</span></div>
+      <h3>Memorial Hermann winds down commercial insurance; another provider-sponsored plan folds</h3>
+      <p>Reported Jul 8–9: the Houston system will close commercial HMO/PPO and self-funded/TPA products, non-renewing groups from Dec 1, 2026, full exit by end-2027 (its ~14K-member MA plan continues). The system lost $250M last fiscal year. Echoes Providence's May decision to wind down most insurance lines (~440K members).</p>
+      <div class="why"><b>Why it matters:</b> Subscale plans can't carry today's regulatory/admin burden — each wind-down creates migration work and strengthens the consolidation-pressure narrative for every remaining regional.</div>
+      <div class="play"><b>The play →</b> Regional-plan execs: "the plans that survive subscale economics are the ones that automate the admin burden."</div>
+      <div class="src"><a href="https://www.fiercehealthcare.com/payers/memorial-hermann-health-plan-winds-down-commercial-coverage" target="_blank">Fierce ↗</a><a href="https://www.healthcaredive.com/news/memorial-hermann-exits-commercial-plans/824935/" target="_blank">Dive ↗</a><span class="corrob">✓ verified · 2 outlets</span><span class="deadline">⏱ Non-renewals from Dec 1, 2026</span><span class="fb">Rate: <a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%2014%20UP">👍</a><a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%2014%20DOWN&body=Why:%20">👎</a></span></div>
+    </div>
+
+    <div class="card" data-cat="market" data-imp="med" data-prod="B1 X1">
+      <div class="top"><span class="tag t-alleg" style="background:var(--med-bg);color:var(--med);border:0">Exit</span><span class="tag t-aca">ACA</span><span class="tag t-watch">Watch</span><span class="score watch">71</span><span class="payerline">Medica · Regional</span></div>
+      <h3>Medica exits individual ACA markets in Iowa, Kansas, and Oklahoma for 2027</h3>
+      <p>Announced Jun 25: the Minnesota nonprofit drops individual plans in Iowa (~4,000 members), KC-area Kansas (~600), and Oklahoma (~8,400) effective Jan 1, 2027, staying in five core states.</p>
+      <div class="why"><b>Why it matters:</b> Portfolio rationalization = discontinuation, crosswalk, and member-communication work now (B1, X1); remaining Iowa/Oklahoma issuers absorb the book.</div>
+      <div class="play"><b>The play →</b> Check which issuers pick up these counties — enrollment surges need configuration capacity before AEP.</div>
+      <div class="src"><a href="https://www.beckerspayer.com/payer/aca/medica-to-exit-aca-market-in-3-states/" target="_blank">Becker's ↗</a><span class="corrob">✓ verified · 3 outlets</span><span class="deadline">⏱ Effective Jan 1, 2027</span><span class="fb">Rate: <a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%2015%20UP">👍</a><a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%2015%20DOWN&body=Why:%20">👎</a></span></div>
+    </div>
+  </div>
+
+  <!-- ============ LEADERSHIP ============ -->
+  <div class="section" id="leadership">
+    <div class="section-head"><div><div class="kicker">Executive moves</div><h2>Leadership Updates</h2></div><span class="count">1 item + FYI</span></div>
+
+    <div class="card" data-cat="leadership" data-imp="med" data-prod="X1 I1">
+      <div class="top"><span class="tag t-alleg" style="background:var(--med-bg);color:var(--med);border:0">Tech leadership</span><span class="tag t-aca">ACA</span><span class="tag t-watch">Watch</span><span class="score watch">61</span><span class="payerline">Oscar Health · Mid</span></div>
+      <h3>Oscar co-founder Mario Schlosser steps back from CTO role to advisor</h3>
+      <p>Effective Jun 1: Schlosser moves to co-founder/advisor supporting CEO Mark Bertolini; Siddhartha Sankaran named independent board chair. Shares fell ~8% on the announcement as Oscar pushes ICHRA products and expansion.</p>
+      <div class="why"><b>Why it matters:</b> A technology-leadership inflection at the most tech-forward ACA insurer — new tech leadership typically re-evaluates the build-vs-buy stack within 2–3 quarters.</div>
+      <div class="play"><b>The play →</b> Time an Oscar touch for early fall, once the new tech org settles.</div>
+      <div class="src"><a href="https://www.beckerspayer.com/executive-moves/oscar-health-co-founder-transitions-from-tech-chief-to-advisor-role/" target="_blank">Becker's ↗</a><span class="corrob">✓ verified · 2 outlets</span><span class="fb">Rate: <a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%2016%20UP">👍</a><a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%2016%20DOWN&body=Why:%20">👎</a></span></div>
+    </div>
+
+    <div class="fyi-strip" data-cat="leadership">
+      <b>FYI (scored 40–54, one line each):</b>
+      🔹 <b>Alignment Healthcare</b> — ex-CTO whistleblower suit alleges 2024 expense misclassification; company says independent review found claims unfounded. <i>Allegation — unproven.</i> <a href="https://www.fiercehealthcare.com/payers/former-exec-alleges-alignment-healthcare-leaders-juiced-profits-boost-bonuses" target="_blank" style="color:var(--blue-link)">Fierce ↗</a> ·
+      🔹 <b>Centene</b> added JPMorgan veteran Lauren Tyler to its board (Jun 24) amid its restructuring push.
+    </div>
+  </div>
+
+  <!-- ============ RADAR ============ -->
+  <div class="section" id="radar">
+    <div class="section-head"><div><div class="kicker">Calendar</div><h2>On the Radar</h2></div><span class="count">7 dates</span></div>
+    <ul class="radar">
+      <li><span class="d">Jul 21</span><span class="lab"><span class="tag t-med">Comment close</span></span><span>Medicaid managed-care state directed payments proposed rule. <a href="https://www.federalregister.gov/documents/2026/05/22/2026-10292/medicaid-program-medicaid-managed-care-state-directed-payments-and-medicaid-fee-for-service-targeted" target="_blank">Source</a></span></li>
+      <li><span class="d">Jul 28</span><span class="lab"><span class="tag t-med">Deadline</span></span><span>UnitedHealthcare, Humana, CVS responses due to Senate AI prior-auth letters.</span></li>
+      <li><span class="d">Jul 31</span><span class="lab"><span class="tag t-hi">Effective</span></span><span>Medicaid community-engagement IFC takes effect; comment period closes same day. <a href="https://www.federalregister.gov/documents/2026/06/03/2026-11094/medicaid-program-community-engagement-requirement-for-certain-individuals" target="_blank">Source</a></span></li>
+      <li><span class="d">Early Aug</span><span class="lab"><span class="tag t-fyi">Earnings</span></span><span>CVS/Aetna, Centene, Molina, Oscar Q2 calls — watch Medicaid margin and efficiency-program language.</span></li>
+      <li><span class="d">October</span><span class="lab"><span class="tag t-med">Watch</span></span><span>2027 MA Star Ratings release — first cycle after the recalculation litigation; Oct 15: 2027 AEP begins.</span></li>
+      <li><span class="d">Dec 1</span><span class="lab"><span class="tag t-med">Milestone</span></span><span>Memorial Hermann commercial group non-renewals begin.</span></li>
+      <li><span class="d">Jan 1, 2027</span><span class="lab"><span class="tag t-hi">Triple deadline</span></span><span>Medicaid work-requirement implementation · CMS-0057 prior-auth/interop APIs · Illinois HealthChoice go-live · ARHOME/Medica/ACA exits effective.</span></li>
+    </ul>
+  </div>
+
+  <div class="method">
+    <b>Methodology (v2 · calibration edition 1).</b> Sources scanned this cycle: Federal Register API, CMS newsroom, SEC EDGAR full-text (8 payer tickers), Fierce Healthcare Payer, Healthcare Dive Payers, Becker's Payer Issues, KFF, STAT, Google News payer queries, GDELT regional sweep, payer newsrooms, X/LinkedIn public company chatter. Every shipped item was link-verified with publication date and named payer confirmed; market items require ≥2 corroborating outlets or a primary source (SEC/Federal Register/company PR). Allegations are labeled. Items are scored 0–100 against the v1.0 rubric (event class · product fit · time pressure · account fit · freshness); scores stay visible during calibration. <b>32 candidate market items were cut by the rubric this cycle</b> — if something you needed got cut, or something here is noise, use the 👍/👎 links or reply with a rule ("stop showing X", "always show Y") and the rubric updates next cycle. Research and synthesis: Claude Fable 5.
+  </div>
+
+  <div class="footer">
+    <div>Payer Pulse · Simplify Healthcare Competitive Intelligence</div>
+    <div><a href="tel:+18447206678">(844) 720-6678</a> · <a href="mailto:info@simplifyhealthcare.com">info@simplifyhealthcare.com</a> · <a href="https://simplifyhealthcare.com">simplifyhealthcare.com</a></div>
+    <div class="fine">Compiled July 17, 2026 · Next issue August 17, 2026 · Curated by Claude Fable 5<br>Copyright © 2026 Simplify Healthcare. All Rights Reserved. Confidential and Proprietary.</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var cards = Array.prototype.slice.call(document.querySelectorAll('[data-cat]'));
+  var sections = {regulatory:document.getElementById('regulatory'), market:document.getElementById('market'), leadership:document.getElementById('leadership')};
+  var catChips = Array.prototype.slice.call(document.querySelectorAll('.chip[data-f]'));
+  var prodChips = Array.prototype.slice.call(document.querySelectorAll('.chip[data-p]'));
+  var state = {cat:'all', hi:false, prods:[]};
+  function apply(){
+    cards.forEach(function(c){
+      var okCat = state.cat==='all' || c.getAttribute('data-cat')===state.cat;
+      var okHi = !state.hi || c.getAttribute('data-imp')==='hi';
+      var prods = (c.getAttribute('data-prod')||'').split(' ');
+      var okProd = state.prods.length===0 || state.prods.some(function(p){return prods.indexOf(p)>-1;});
+      c.classList.toggle('hidden', !(okCat && okHi && okProd));
+    });
+    Object.keys(sections).forEach(function(k){
+      var s=sections[k]; if(!s) return;
+      var any = Array.prototype.some.call(s.querySelectorAll('[data-cat]'), function(c){return !c.classList.contains('hidden');});
+      s.classList.toggle('hidden', !any);
+    });
+  }
+  catChips.forEach(function(ch){
+    ch.addEventListener('click', function(){
+      var f = ch.getAttribute('data-f');
+      if(f==='hi'){ state.hi=!state.hi; ch.classList.toggle('active', state.hi); apply(); return; }
+      state.cat=f;
+      catChips.forEach(function(o){ if(o.getAttribute('data-f')!=='hi') o.classList.toggle('active', o===ch); });
+      apply();
+    });
+  });
+  prodChips.forEach(function(ch){
+    ch.addEventListener('click', function(){
+      var p = ch.getAttribute('data-p');
+      var i = state.prods.indexOf(p);
+      if(i>-1){ state.prods.splice(i,1); ch.classList.remove('active'); } else { state.prods.push(p); ch.classList.add('active'); }
+      apply();
+    });
+  });
+})();
+</script>
+</body>
+</html>
