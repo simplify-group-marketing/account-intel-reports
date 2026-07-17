@@ -87,8 +87,19 @@
   .deadline{font-size:11.5px;font-weight:700;color:var(--hi);}
   /* fyi strip */
   .fyi-strip{margin:14px 0 22px;padding:12px 16px;background:var(--low-bg);border-radius:5px;font-size:12.5px;line-height:1.7;color:var(--ink-70);}
+  /* payer-year cycle strip */
+  .cyc{display:flex;border:1px solid var(--line);border-radius:5px;overflow:hidden;margin:16px 0 8px;}
+  .cyc .m{flex:1;text-align:center;position:relative;background:#fff;padding-bottom:7px;}
+  .cyc .m .bar{height:6px;margin-bottom:6px;}
+  .cyc .m .ml{font-size:9.5px;font-weight:700;letter-spacing:.4px;color:var(--ink-50);}
+  .cyc .m.now{background:var(--sky-soft);}
+  .cyc .m.now .ml{color:var(--blue-900);}
+  .cyc .m.now .here{display:block;font-size:8px;font-weight:800;color:var(--hi);letter-spacing:.5px;}
+  .cyclegend{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 4px;font-size:10.5px;font-weight:600;color:var(--ink-70);}
+  .cyclegend .sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px;}
+  .rgroup{font-size:10.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold-deep);margin:20px 0 2px;}
   /* radar */
-  .radar{margin:14px 0 26px;padding:0;list-style:none;}
+  .radar{margin:6px 0 8px;padding:0;list-style:none;}
   .radar li{display:flex;gap:16px;padding:10px 0;border-bottom:1px solid var(--line-soft);font-size:13px;line-height:1.5;}
   .radar .d{flex:0 0 92px;font-weight:800;color:var(--blue-900);font-size:12.5px;}
   .radar .lab{flex:0 0 108px;}
@@ -225,7 +236,7 @@
     <div class="card" data-cat="market" data-imp="hi" data-prod="B1 P1 C1">
       <div class="top"><span class="tag t-alleg" style="background:var(--hi-bg);color:var(--hi);border:0">Procurement</span><span class="tag t-medicaid">Medicaid</span><span class="tag t-act">Act now</span><span class="score">90</span><span class="payerline">6 plans · ~3.1M lives</span></div>
       <h3>Illinois awards HealthChoice Medicaid contracts; Humana enters, go-live Jan 1, 2027</h3>
-      <p>Illinois HFS awarded 4.5-year contracts to Aetna Better Health, BCBS of Illinois (HCSC, tracked · 18.6M), Humana (tracked · 11.8M — new to the program), Meridian (Centene), Molina, and CountyCare, announced Jun 15.</p>
+      <p>Illinois HFS awarded 4.5-year contracts to Aetna Better Health, BCBS of Illinois (HCSC, tracked · 18.6M), Humana (tracked · 11.8M — new to the program), Meridian (Centene), Molina, and CountyCare — awards announced in June (state notice ~Jun 9; plan confirmations Jun 15–16).</p>
       <div class="why"><b>Why it matters:</b> Six simultaneous implementations on one deadline: benefits loads (B1), provider network/data builds (P1), claims configuration and readiness testing (C1).</div>
       <div class="play"><b>The play →</b> Humana's greenfield Illinois build and Molina's implementation are live opportunities NOW — implementation pain peaks in Q3–Q4 2026, not after go-live.</div>
       <div class="src"><a href="https://www.healthcaredive.com/news/illinois-medicaid-awards-healthchoice-contracts-humana/822278/" target="_blank">Healthcare Dive ↗</a><a href="https://investors.molinahealthcare.com/news-releases/news-release-details/molina-healthcare-wins-illinois-medicaid-contract" target="_blank">Molina PR ↗</a><span class="corrob">✓ verified · 4+ outlets</span><span class="deadline">⏱ Go-live Jan 1, 2027</span><span class="fb">Rate: <a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%207%20UP">👍</a><a href="mailto:shamit.biswas@simplifyhealthcare.com?subject=PP-2026-07%20item%207%20DOWN&body=Why:%20">👎</a></span></div>
@@ -326,15 +337,58 @@
 
   <!-- ============ RADAR ============ -->
   <div class="section" id="radar">
-    <div class="section-head"><div><div class="kicker">Calendar</div><h2>On the Radar</h2></div><span class="count">7 dates</span></div>
+    <div class="section-head"><div><div class="kicker">Calendar</div><h2>On the Radar — the Payer Year</h2></div><span class="count">Where we are &amp; what's next</span></div>
+
+    <div class="cyc">
+      <div class="m"><div class="bar" style="background:#6A4FB3"></div><span class="ml">J</span></div>
+      <div class="m"><div class="bar" style="background:#6A4FB3"></div><span class="ml">F</span></div>
+      <div class="m"><div class="bar" style="background:#6A4FB3"></div><span class="ml">M</span></div>
+      <div class="m"><div class="bar" style="background:#1F8A6D"></div><span class="ml">A</span></div>
+      <div class="m"><div class="bar" style="background:#1F8A6D"></div><span class="ml">M</span></div>
+      <div class="m"><div class="bar" style="background:#1F8A6D"></div><span class="ml">J</span></div>
+      <div class="m now"><div class="bar" style="background:#B07A12"></div><span class="here">▼ NOW</span><span class="ml">J</span></div>
+      <div class="m"><div class="bar" style="background:#B07A12"></div><span class="ml">A</span></div>
+      <div class="m"><div class="bar" style="background:#B07A12"></div><span class="ml">S</span></div>
+      <div class="m"><div class="bar" style="background:#B23A2E"></div><span class="ml">O</span></div>
+      <div class="m"><div class="bar" style="background:#B23A2E"></div><span class="ml">N</span></div>
+      <div class="m"><div class="bar" style="background:#B23A2E"></div><span class="ml">D</span></div>
+    </div>
+    <div class="cyclegend">
+      <span><span class="sw" style="background:#6A4FB3"></span>Q1: MA Advance Notice · Q4/Q1 earnings</span>
+      <span><span class="sw" style="background:#1F8A6D"></span>Apr–Jun: Final Rate Notice → MA/Part D bids (Jun 1 ✓)</span>
+      <span><span class="sw" style="background:#B07A12"></span>Jul–Sep: ACA filings ✓ · Q2 earnings · 2027 config build · ANOC</span>
+      <span><span class="sw" style="background:#B23A2E"></span>Oct–Dec: Star Ratings · AEP · ACA Open Enrollment</span>
+    </div>
+    <p class="section-sub"><b>Where we are (Jul 17):</b> bids are in, ACA rate filings just closed (Jul 15), Q2 earnings are mid-flight — payers are now locking 2027 benefit configuration, claims-readiness testing, ANOC/EOC production, and AEP staffing. <b>This is the quarter implementation and automation capacity gets bought.</b> By AEP it's too late.</p>
+
+    <p class="rgroup">Regulatory clock</p>
     <ul class="radar">
       <li><span class="d">Jul 21</span><span class="lab"><span class="tag t-med">Comment close</span></span><span>Medicaid managed-care state directed payments proposed rule. <a href="https://www.federalregister.gov/documents/2026/05/22/2026-10292/medicaid-program-medicaid-managed-care-state-directed-payments-and-medicaid-fee-for-service-targeted" target="_blank">Source</a></span></li>
       <li><span class="d">Jul 28</span><span class="lab"><span class="tag t-med">Deadline</span></span><span>UnitedHealthcare, Humana, CVS responses due to Senate AI prior-auth letters.</span></li>
-      <li><span class="d">Jul 31</span><span class="lab"><span class="tag t-hi">Effective</span></span><span>Medicaid community-engagement IFC takes effect; comment period closes same day. <a href="https://www.federalregister.gov/documents/2026/06/03/2026-11094/medicaid-program-community-engagement-requirement-for-certain-individuals" target="_blank">Source</a></span></li>
-      <li><span class="d">Early Aug</span><span class="lab"><span class="tag t-fyi">Earnings</span></span><span>CVS/Aetna, Centene, Molina, Oscar Q2 calls — watch Medicaid margin and efficiency-program language.</span></li>
-      <li><span class="d">October</span><span class="lab"><span class="tag t-med">Watch</span></span><span>2027 MA Star Ratings release — first cycle after the recalculation litigation; Oct 15: 2027 AEP begins.</span></li>
+      <li><span class="d">Jul 31</span><span class="lab"><span class="tag t-hi">Effective</span></span><span>Medicaid community-engagement IFC takes effect; comments close same day. <a href="https://www.federalregister.gov/documents/2026/06/03/2026-11094/medicaid-program-community-engagement-requirement-for-certain-individuals" target="_blank">Source</a></span></li>
+      <li><span class="d">Jan 1, 2027</span><span class="lab"><span class="tag t-hi">Triple deadline</span></span><span>Work-requirement implementation · CMS-0057 prior-auth/interop APIs · Illinois HealthChoice go-live · ARHOME/Medica/ACA exits effective.</span></li>
+    </ul>
+
+    <p class="rgroup">Earnings cycle — Q2 season</p>
+    <ul class="radar">
+      <li><span class="d">Jul 15–16 ✓</span><span class="lab"><span class="tag t-fyi">Reported</span></span><span>Elevance (beat, Medicaid pressure, D.C. exit) · UnitedHealth (86.7% MCR, guidance up) — covered above.</span></li>
+      <li><span class="d">Early Aug</span><span class="lab"><span class="tag t-fyi">Upcoming</span></span><span>CVS/Aetna, Centene, Molina, Oscar Q2 calls — listen for Medicaid margin, exit language, and “operating efficiency” programs (that's the automation budget line).</span></li>
+    </ul>
+
+    <p class="rgroup">2027 product-year build (the sales window)</p>
+    <ul class="radar">
+      <li><span class="d">Jun 1 ✓</span><span class="lab"><span class="tag t-fyi">Done</span></span><span>MA/Part D bids submitted — 2027 benefit designs are committed; configuration work follows now.</span></li>
+      <li><span class="d">Jul 15 ✓</span><span class="lab"><span class="tag t-fyi">Done</span></span><span>ACA rate filings submitted (14% median ask) — plan/SBC rework underway at every exchange issuer.</span></li>
+      <li><span class="d">Aug–Sep</span><span class="lab"><span class="tag t-med">In motion</span></span><span>Final ACA rates + QHP certification · 2027 benefits configuration &amp; claims-readiness testing peak · exiting plans build discontinuation/crosswalk ops.</span></li>
+      <li><span class="d">Sep 30</span><span class="lab"><span class="tag t-hi">Hard stop</span></span><span>ANOC/EOC must reach MA members — benefit configuration effectively locks before this date.</span></li>
       <li><span class="d">Dec 1</span><span class="lab"><span class="tag t-med">Milestone</span></span><span>Memorial Hermann commercial group non-renewals begin.</span></li>
-      <li><span class="d">Jan 1, 2027</span><span class="lab"><span class="tag t-hi">Triple deadline</span></span><span>Medicaid work-requirement implementation · CMS-0057 prior-auth/interop APIs · Illinois HealthChoice go-live · ARHOME/Medica/ACA exits effective.</span></li>
+    </ul>
+
+    <p class="rgroup">Enrollment cycles</p>
+    <ul class="radar">
+      <li><span class="d">October</span><span class="lab"><span class="tag t-med">Watch</span></span><span>2027 MA Star Ratings release — first cycle after the recalculation litigation; expect appeals and more suits.</span></li>
+      <li><span class="d">Oct 15–Dec 7</span><span class="lab"><span class="tag t-hi">AEP</span></span><span>Medicare Annual Enrollment — member-experience and benefits-inquiry volume peaks (X1 season).</span></li>
+      <li><span class="d">Nov 1</span><span class="lab"><span class="tag t-med">ACA OE</span></span><span>2027 ACA Open Enrollment begins — exit-wave members (~700K+) get re-mapped in the market.</span></li>
     </ul>
   </div>
 
